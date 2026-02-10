@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Amy ❤️</title>
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+button {
+    background-color: #ff4d6d;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 20px;
+    position: relative;
+}
+
+button:hover {
+    background-color: #ff1e4d;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="texto"></h1>
+    <div id="botones" style="display:none;">
+        <button onclick="si()">Sí 💘</button>
+        <button onmouseover="moverNo()" id="noBtn">No 😅</button>
+    </div>
+</div>
+
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const mensaje = "Hola Amy ❤️ Me gusta muchísimo tu compañía, los abrazos que me das y cuando me acaricias el pelo... contigo todo se siente especial y diferente. 💖 Por eso quiero preguntarte algo muy importante... ¿Quieres ser mi San Valentín?";
+let i = 0;
+
+function escribir() {
+    if (i < mensaje.length) {
+        document.getElementById("texto").innerHTML += mensaje.charAt(i);
+        i++;
+        setTimeout(escribir, 40);
+    } else {
+        document.getElementById("botones").style.display = "block";
+    }
+}
+
+escribir();
+
+function si() {
+    document.body.innerHTML = `
+        <div style="margin-top:150px;">
+        <h1>Sabía que dirías que sí 😍❤️</h1>
+        <h2>Haré que este 14 sea uno de los mejores 💖✨</h2>
+        </div>
+    `;
+}
+
+function moverNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+}
+
+function crearCorazon() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(crearCorazon, 300);
+</script>
+
+</body>
+</html>
